@@ -1,8 +1,6 @@
-import math
 import urllib.request
 import requests
 import json
-import re
 import geopy.distance
 from datetime import datetime
 from turtle import Turtle, Screen
@@ -76,7 +74,7 @@ while in_app:
     iss_turtle.pendown()
     current_distance = round(geopy.distance.distance(iss.get_position(), iss.get_user_position()).miles, 1)
     print(f"Latitude: {iss_lat}\tLongitude: {iss_long} at "
-          f"{datetime.today().strftime('%Y-%m-%d %H-%M:%S')}")
+          f"{datetime.today().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"Distance Away:\t{current_distance} miles")
     sunrise_hour = iss.get_sunrise().split("T")[1].split(":")[0]
     sunrise_day = iss.get_sunrise().split("T")[0].split('-')[2]
