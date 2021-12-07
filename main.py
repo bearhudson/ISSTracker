@@ -12,10 +12,9 @@ SERVER = os.environ.get('MY_SERVER')
 FROM = os.environ.get('MY_FROM')
 
 screen = Screen()
-screen.title("ISS Tracker")
+screen.title("PySS Tracker")
 screen.setup(height=450, width=900)
-# screen.bgpic("world_map.png")
-screen.bgpic("new_map.png")
+screen.bgpic("map.png")
 iss = ISSTracker()
 home = HomeLocation()
 
