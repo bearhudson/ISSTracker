@@ -1,3 +1,6 @@
 # ISSTracker
 
-I wasn't planning on doing the turtle map but I figured it would be a fun challenge. The code could be massively simplified by inheriting the turtle class and making one object but jimmy crapped corn and I won't re-write it. 
+* Total re-write.
+* Better notifications.
+
+Map complements of [Wikimedia](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/BlankMap-World-Flattened.svg/2754px-BlankMap-World-Flattened.svg.png)
