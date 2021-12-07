@@ -7,9 +7,9 @@ import time
 import geopy.distance
 
 EMAIL = os.environ.get('EMAIL')
-PASS = os.environ.get('MY_PASS')
-SERVER = os.environ.get('MY_SERVER')
-FROM = os.environ.get('MY_FROM')
+PASS = os.environ.get('PASS')
+SERVER = os.environ.get('SERVER')
+FROM = os.environ.get('FROM')
 
 screen = Screen()
 screen.title("PySS Tracker")
@@ -25,6 +25,7 @@ while is_tracking:
     iss.update_position()
     iss.set_grid_position()
     distance = round(geopy.distance.distance(iss.get_gps(), home.get_gps()).miles, 1)
+    print(f"The ISS is: {distance} miles away.")
     if distance < 50 and not home.check_daylight():
         email_notifier.send_message(iss.get_gps(), distance)
     if iss.x < old_x:

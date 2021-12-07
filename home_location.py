@@ -16,10 +16,16 @@ class HomeLocation(Turtle):
         self.shape(SHAPE)
         self.x = 0
         self.y = 0
+        req = requests.get("http://ipinfo.io/json")
+        req.raise_for_status()
+        data = req.json()
+        self.user_location = data['loc']
         self.set_user_position()
         self.get_gps()
         self.goto(self.x, self.y)
         self.sunrise = self.get_sunrise()
+        self.sunrise_hour = self.get_sunrise().split("T")[1].split(":")[0]
+        self.sunrise_day = self.get_sunrise().split("T")[0].split('-')[2]
 
     def get_sunrise(self):
         parameters = {
@@ -33,10 +39,6 @@ class HomeLocation(Turtle):
         return obj['results']['sunrise']
 
     def set_user_position(self):
-        req = requests.get("http://ipinfo.io/json")
-        req.raise_for_status()
-        data = req.json()
-        self.user_location = data['loc']
         self.y = float(format(self.get_gps()[0])) * 2.5
         self.x = float(format(self.get_gps()[1])) * 2.5
 
@@ -44,8 +46,6 @@ class HomeLocation(Turtle):
         return eval(self.user_location)
 
     def check_daylight(self):
-        self.sunrise_hour = self.get_sunrise().split("T")[1].split(":")[0]
-        self.sunrise_day = self.get_sunrise().split("T")[0].split('-')[2]
         if int(self.sunrise_hour) <= self.datetime_now.hour and int(self.sunrise_day) >= self.datetime_now.day:
             return True
         else:
