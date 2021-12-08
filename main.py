@@ -1,3 +1,4 @@
+import datetime
 import os
 from turtle import Screen
 from iss import ISSTracker
@@ -25,7 +26,7 @@ while is_tracking:
     iss.update_position()
     iss.set_grid_position()
     distance = round(geopy.distance.distance(iss.get_gps(), home.get_gps()).miles, 1)
-    print(f"The ISS is: {distance} miles away.")
+    print(f"{time.strftime('%H:%M:%S %Z')}-> The ISS is: {distance} miles away.")
     if distance < 50 and not home.check_daylight():
         email_notifier.send_message(iss.get_gps(), distance)
     if iss.x < old_x:
@@ -36,6 +37,6 @@ while is_tracking:
         iss.move()
         iss.pendown()
     old_x = iss.x
-    time.sleep(5)
+    time.sleep(15)
 
 screen.exitonclick()
